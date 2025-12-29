@@ -1,14 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonHeader, IonToolbar,IonTitle,IonContent,IonButtons,IonButton,IonIcon,
+} from '@ionic/angular/standalone';
+import { IonItem, IonLabel, IonInput } from '@ionic/angular/standalone';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+imports: [
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonButtons,
+  IonButton,
+  IonIcon,
+  IonItem, IonLabel, IonInput,
+  FormsModule,
+  RouterLink
+],
 })
 export class HomePage implements OnInit {
 
@@ -16,5 +31,10 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
+  ingredientsText = '';
+
+searchRecipes() {
+  console.log('Searching for:', this.ingredientsText);
+}
 
 }
