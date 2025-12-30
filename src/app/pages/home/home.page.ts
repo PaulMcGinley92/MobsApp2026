@@ -8,7 +8,7 @@ import { IonItem, IonLabel, IonInput } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { SpoonacularService, SpoonacularSearchResult } from '../../services/spoonacular';
 import { IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +17,7 @@ import { IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/ang
   standalone: true,
 imports: [
   CommonModule,
+
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -60,5 +61,7 @@ searchRecipes() {
 }
 
 recipes: SpoonacularSearchResult[] = [];
+
+
 
 }
