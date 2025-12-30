@@ -24,4 +24,21 @@
 <ion-button expand="block" (click)="searchRecipes()">
   SEARCH
 </ion-button>
+<p>Recipes found: {{ recipes.length }}</p>
+
+<div *ngFor="let r of recipes">
+  {{ r.title }}
+</div>
+<ion-card *ngFor="let r of recipes">
+  <img [src]="r.image" [alt]="r.title" />
+  <ion-card-header>
+    <ion-card-title>{{ r.title }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-button size="small">
+      DETAILS
+    </ion-button>
+  </ion-card-content>
+</ion-card>
 </ion-content>

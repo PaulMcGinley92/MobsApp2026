@@ -6,6 +6,9 @@ import {
 } from '@ionic/angular/standalone';
 import { IonItem, IonLabel, IonInput } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
+import { SpoonacularService, SpoonacularSearchResult } from '../../services/spoonacular';
+import { IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
+
 
 @Component({
   selector: 'app-home',
@@ -13,6 +16,7 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./home.page.scss'],
   standalone: true,
 imports: [
+  CommonModule,
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -22,12 +26,16 @@ imports: [
   IonIcon,
   IonItem, IonLabel, IonInput,
   FormsModule,
+  IonCard,
+IonCardHeader,
+IonCardTitle,
+IonCardContent,
   RouterLink
 ],
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private api: SpoonacularService) { }
 
   ngOnInit() {
   }
@@ -35,6 +43,22 @@ export class HomePage implements OnInit {
 
 searchRecipes() {
   console.log('Searching for:', this.ingredientsText);
+
+  const q = this.ingredientsText.trim();
+  if (!q) return;
+
+  this.api.searchRecipes(q).subscribe({
+    next: (data) => {
+      console.log('API returned:', data);
+      this.recipes = data.results ?? [];
+      console.log('Recipes saved:', this.recipes.length);
+    },
+    error: (err) => {
+      console.log('API ERROR:', err);
+    }
+  });
 }
+
+recipes: SpoonacularSearchResult[] = [];
 
 }
