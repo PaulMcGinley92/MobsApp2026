@@ -36,7 +36,7 @@ IonCardContent,
 })
 export class HomePage implements OnInit {
 
-  constructor(private api: SpoonacularService) { }
+  constructor(private api: SpoonacularService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -60,6 +60,12 @@ searchRecipes() {
   });
 }
 
+
+
+goToDetails(id: number) {
+  console.log('Going to recipe id:', id);
+  this.router.navigate(['/recipe-details', id]);
+}
 recipes: SpoonacularSearchResult[] = [];
 
 

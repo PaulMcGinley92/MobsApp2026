@@ -1,13 +1,14 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>recipe-details</ion-title>
+    <ion-title>Recipe Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">recipe-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <p *ngIf="!recipe">Loading...</p>
+
+  <div *ngIf="recipe">
+    <h2>{{ recipe.title }}</h2>
+    <img [src]="recipe.image" [alt]="recipe.title" style="width: 100%; border-radius: 12px;" />
+  </div>
 </ion-content>

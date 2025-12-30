@@ -16,7 +16,7 @@ export interface SpoonacularSearchResponse {
   providedIn: 'root',
 })
 export class SpoonacularService {
-  private readonly apiKey = '70759a4f7911402abcc53d3c51d3b759'; // from the brief :contentReference[oaicite:1]{index=1}
+  private readonly apiKey = '70759a4f7911402abcc53d3c51d3b759'; 
   private readonly baseUrl = 'https://api.spoonacular.com/recipes/complexSearch';
 
   constructor(private http: HttpClient) {}
@@ -29,4 +29,15 @@ export class SpoonacularService {
       },
     });
   }
+
+  getRecipeInformation(id: number) {
+  return this.http.get(
+    `https://api.spoonacular.com/recipes/${id}/information`,
+    {
+      params: {
+        apiKey: this.apiKey,
+      },
+    }
+  );
+}
 }
