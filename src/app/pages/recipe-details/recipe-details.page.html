@@ -11,4 +11,15 @@
     <h2>{{ recipe.title }}</h2>
     <img [src]="recipe.image" [alt]="recipe.title" style="width: 100%; border-radius: 12px;" />
   </div>
+  <h3>Ingredients</h3>
+<ion-list>
+  <ion-item *ngFor="let ing of ingredients">
+    <ion-label>{{ ing.original }}</ion-label>
+  </ion-item>
+</ion-list>
+
+<h3>Instructions</h3>
+<div *ngFor="let s of steps">
+  <p><strong>{{ s.number }}.</strong> {{ s.step }}</p>
+</div>
 </ion-content>
