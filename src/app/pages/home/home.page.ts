@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import {
   IonHeader, IonToolbar,IonTitle,IonContent,IonButtons,IonButton,IonIcon,
 } from '@ionic/angular/standalone';
@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { SpoonacularService, SpoonacularSearchResult } from '../../services/spoonacular';
 import { IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -26,12 +27,12 @@ imports: [
   IonButton,
   IonIcon,
   IonItem, IonLabel, IonInput,
-  FormsModule,
   IonCard,
 IonCardHeader,
 IonCardTitle,
 IonCardContent,
-  RouterLink
+  RouterLink,
+  ReactiveFormsModule,
 ],
 })
 export class HomePage implements OnInit {
@@ -40,12 +41,12 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
-  ingredientsText = '';
+  ingredients = new FormControl('');
 
 searchRecipes() {
-  console.log('Searching for:', this.ingredientsText);
+  console.log('Searching for:', this.ingredients);
 
-  const q = this.ingredientsText.trim();
+  const q = (this.ingredients.value ?? '').trim();
   if (!q) return;
 
   this.api.searchRecipes(q).subscribe({

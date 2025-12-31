@@ -18,7 +18,10 @@
   <ion-item>
   <ion-label position="floating">Enter Ingredients</ion-label>
   <p></p>
-  <ion-input [(ngModel)]="ingredientsText" placeholder="Carrots, Beef, Potatoes"></ion-input>
+  <ion-input name="ingredients"
+  [formControl]="ingredients"
+  placeholder="Carrots, Beef, Potatoes">
+  </ion-input>
 </ion-item>
 
 <ion-button expand="block" (click)="searchRecipes()">

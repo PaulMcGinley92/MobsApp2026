@@ -12,9 +12,16 @@
     <img [src]="recipe.image" [alt]="recipe.title" style="width: 100%; border-radius: 12px;" />
   </div>
   <h3>Ingredients</h3>
+
 <ion-list>
   <ion-item *ngFor="let ing of ingredients">
-    <ion-label>{{ ing.original }}</ion-label>
+    <ion-label>
+      {{ ing.name }} —
+      {{ units === 'metric'
+          ? (ing.measures.metric.amount + ' ' + ing.measures.metric.unitLong)
+          : (ing.measures.us.amount + ' ' + ing.measures.us.unitLong)
+      }}
+    </ion-label>
   </ion-item>
 </ion-list>
 
