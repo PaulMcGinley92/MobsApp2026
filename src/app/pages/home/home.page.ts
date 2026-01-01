@@ -18,7 +18,6 @@ import { Router } from '@angular/router';
   standalone: true,
 imports: [
   CommonModule,
-
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -26,11 +25,13 @@ imports: [
   IonButtons,
   IonButton,
   IonIcon,
-  IonItem, IonLabel, IonInput,
+  IonItem, 
+  IonLabel, 
+  IonInput,
   IonCard,
-IonCardHeader,
-IonCardTitle,
-IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
   RouterLink,
   ReactiveFormsModule,
 ],
@@ -47,7 +48,7 @@ searchRecipes() {
   console.log('Searching for:', this.ingredients);
 
   const q = (this.ingredients.value ?? '').trim();
-  if (!q) return;
+  if (!q) return;  //Prevents empty api requests
 
   this.api.searchRecipes(q).subscribe({
     next: (data) => {

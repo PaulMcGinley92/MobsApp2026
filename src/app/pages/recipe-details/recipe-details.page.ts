@@ -26,19 +26,18 @@ export class RecipeDetailsPage {
   ionViewWillEnter() {
     
 
-     const saved = localStorage.getItem('units');
-this.units = (saved === 'us' || saved === 'metric') ? saved : 'metric';
-console.log('Details using units:', this.units);
+  const saved = localStorage.getItem('units');
+  this.units = (saved === 'us' || saved === 'metric') ? saved : 'metric';
+  console.log('Details using units:', this.units);
 
-const idStr = this.route.snapshot.paramMap.get('id');
-    const id = Number(idStr);
+  const idStr = this.route.snapshot.paramMap.get('id');
+  const id = Number(idStr);
+  
+  console.log('Details page id:', id, 'raw:', idStr);
 
-
-    console.log('Details page id:', id, 'raw:', idStr);
-
-if (!idStr || Number.isNaN(id) || id <= 0) {
-  console.log('BAD ID from route:', idStr);
-  return;
+  if (!idStr || Number.isNaN(id) || id <= 0) {
+   console.log('BAD ID from route:', idStr);
+   return;
 }
    
 
