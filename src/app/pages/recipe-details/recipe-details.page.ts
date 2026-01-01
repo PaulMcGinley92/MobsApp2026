@@ -63,11 +63,21 @@ if (!idStr || Number.isNaN(id) || id <= 0) {
 }
 
 toggleFavourite() {
-  const raw = localStorage.getItem('favourites');
-  let favs = raw ? JSON.parse(raw) : [];
+  console.log('Favourite clicked. recipe:', this.recipe);
 
-  if (this.isFavourite) {
-    favs = favs.filter((f: any) => f.id !== this.recipe.id);
+  if (!this.recipe?.id) {
+    console.log('No recipe loaded yet, cannot favourite.');
+    return;
+  }
+
+  const raw = localStorage.getItem('favourites');
+  let favs: any[] = raw ? JSON.parse(raw) : [];
+
+  const exists = favs.some(f => f.id === this.recipe.id);
+
+  if (exists) {
+    favs = favs.filter(f => f.id !== this.recipe.id);
+    this.isFavourite = false;
   } else {
     favs.push({
       id: this.recipe.id,
@@ -76,6 +86,10 @@ toggleFavourite() {
     });
     this.isFavourite = true;
   }
+
+  localStorage.setItem('favourites', JSON.stringify(favs));
+  console.log('Favourites saved:', favs);
+
 
   localStorage.setItem('favourites', JSON.stringify(favs));
   this.isFavourite = !this.isFavourite;
