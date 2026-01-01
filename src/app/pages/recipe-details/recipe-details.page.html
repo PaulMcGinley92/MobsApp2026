@@ -18,6 +18,12 @@
 
 <ion-list>
   <ion-item *ngFor="let ing of ingredients">
+    <ion-thumbnail slot="start" *ngIf="ing.image">
+    <img
+      [src]="'https://spoonacular.com/cdn/ingredients_100x100/' + ing.image"
+      [alt]="ing.name"
+    />
+  </ion-thumbnail>
     <ion-label>
       {{ ing.name }} —
       {{ units === 'metric'
