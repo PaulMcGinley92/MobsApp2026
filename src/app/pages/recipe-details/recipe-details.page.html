@@ -10,6 +10,9 @@
   <div *ngIf="recipe">
     <h2>{{ recipe.title }}</h2>
     <img [src]="recipe.image" [alt]="recipe.title" style="width: 100%; border-radius: 12px;" />
+    <ion-button expand="block" color="danger" (click)="toggleFavourite()">
+  {{ isFavourite ? 'Remove from Favourites' : 'Add to Favourites' }}
+</ion-button>
   </div>
   <h3>Ingredients</h3>
 
